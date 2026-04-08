@@ -1,5 +1,7 @@
 package br.techcorp.funcionario;
 
+import java.text.DecimalFormat;
+
 public class Funcionario {
     private String matricula;
     private String nome;
@@ -33,6 +35,7 @@ public class Funcionario {
         this.nome = nome;
         this.cargo = cargo;
         this.salarioBase = salarioBase;
+        this.ativo = true;
     }
 
     public void definirBonus (double percentual){
@@ -58,4 +61,16 @@ public class Funcionario {
         double salario = salarioBase + salarioBase * percentualBonus / 100;
         return salario * 0.85;
     }
+
+    public String exibirResumo(){
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String aux = "";
+        aux += "Matrícula: " + matricula + "\n ";
+        aux += "Nome: " + nome + "\n ";
+        aux += "Cargo: " + cargo + "\n ";
+        aux += "Salário Liquido: " + df.format(calcularSalarioLiquido()) + "\n ";
+        return aux;
+    }
+
+
 }
